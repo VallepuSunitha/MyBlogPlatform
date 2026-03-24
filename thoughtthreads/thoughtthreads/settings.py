@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
 
 
-ALLOWED_HOSTS = ['https://myblogplatform.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -141,6 +141,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+# EMAIL_HOST_USER = 'sunithavallepu123@gmail.com'
+# EMAIL_HOST_PASSWORD = 'jeqd ljrs jqnd xduf'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
