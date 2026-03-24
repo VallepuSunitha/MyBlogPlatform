@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 import os
 
 # Create your views here.
@@ -35,3 +40,30 @@ def profile(request):
             'p_form':p_form,
         }
     return render(request,'users/profile.html',context)
+
+
+
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('blog-index')
+        else:
+            return render(request, 'users/login.html', {'error': 'Invalid username or password'})
+
+    return render(request, 'users/login.html')
+
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('users-login')
